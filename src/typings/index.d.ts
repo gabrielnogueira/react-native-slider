@@ -69,6 +69,7 @@ export interface SliderProps extends SliderPropsIOS, SliderPropsAndroid, SliderP
    * Initial maximum value of the slider. Default value is 1.
    */
   maximumValue?: number;
+  maximumValueLimit?: number;
 
   /**
    * The color used for the track to the left of the button.
@@ -80,6 +81,7 @@ export interface SliderProps extends SliderPropsIOS, SliderPropsAndroid, SliderP
    * Initial minimum value of the slider. Default value is 0.
    */
   minimumValue?: number;
+  minimumValueLimit?: number;
 
   /**
    * Callback that is called when the user picks up the slider.

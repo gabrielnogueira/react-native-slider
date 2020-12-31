@@ -49,6 +49,10 @@ public class ReactSlider extends AppCompatSeekBar {
 
   private double mMaxValue = 0;
 
+  private double mMinValueLimit = 0;
+
+  private double mMaxValueLimit = 0;
+
   /**
    * Value sent from JS (setState). Doesn't get updated during drag (slider is not a controlled
    * component).
@@ -78,13 +82,25 @@ public class ReactSlider extends AppCompatSeekBar {
     }
   }
 
+  
+
   /* package */ void setMaxValue(double max) {
     mMaxValue = max;
     updateAll();
   }
 
+  /* package */ void setMaxValueLimit(double max) {
+    mMaxValueLimit = max;
+    updateAll();
+  }
+
   /* package */ void setMinValue(double min) {
     mMinValue = min;
+    updateAll();
+  }
+
+  /* package */ void setMinValueLimit(double min) {
+    mMinValueLimit = min;
     updateAll();
   }
 
@@ -96,6 +112,14 @@ public class ReactSlider extends AppCompatSeekBar {
   /* package */ void setStep(double step) {
     mStep = step;
     updateAll();
+  }
+
+  double getMinValueLimit(){
+    return mMinValueLimit > 0 ? mMinValueLimit : mMinValue;
+  }
+
+  double getMaximumValueLimit(){
+    return mMaxValueLimit > 0 ? mMaxValueLimit : mMaxValue;
   }
 
   void setAccessibilityUnits(String accessibilityUnits) {
@@ -177,7 +201,11 @@ public class ReactSlider extends AppCompatSeekBar {
 
   /** Update value only (optimization in case only value is set). */
   private void updateValue() {
-    setProgress((int) Math.round((mValue - mMinValue) / (mMaxValue - mMinValue) * getTotalSteps()));
+    double v =  Math.round((mValue - mMinValue) / (mMaxValue - mMinValue) * getTotalSteps());
+
+    if(v >= getMinValueLimit() && v <= getMaximumValueLimit()){
+      setProgress((int)v);
+    }
   }
 
   private int getTotalSteps() {

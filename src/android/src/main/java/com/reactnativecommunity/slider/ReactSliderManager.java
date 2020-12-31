@@ -156,9 +156,20 @@ public class ReactSliderManager extends SimpleViewManager<ReactSlider> {
     view.setMinValue(value);
   }
 
+  
+  @ReactProp(name = "minimumValuLimit", defaultDouble = 0d)
+  public void setMinimumValueLimit(ReactSlider view, double value) {
+    view.setMinValueLimit(value);
+  }
+
   @ReactProp(name = "maximumValue", defaultDouble = 1d)
   public void setMaximumValue(ReactSlider view, double value) {
     view.setMaxValue(value);
+  }
+
+  @ReactProp(name = "maximumValueLimit", defaultDouble = 0d)
+  public void setMaximumValueLimit(ReactSlider view, double value) {
+    view.setMaxValueLimit(value);
   }
 
   @ReactProp(name = "step", defaultDouble = 0d)

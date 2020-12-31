@@ -82,10 +82,26 @@ namespace winrt::SliderWindows::implementation {
                     updatedMaxValue = true;
                     m_maxValue = propertyValue.AsInt64();
                 }
+            }else if (propertyName == "maximumValueLimit") {
+                if (propertyValue.IsNull()) {
+                    this->ClearValue(xaml::Controls::Primitives::RangeBase::MaximumLimitProperty());
+                }
+                else {
+                    updatedMaxValue = true;
+                    m_maxValue = propertyValue.AsInt64();
+                }
             }
             else if (propertyName == "minimumValue") {
                 if (propertyValue.IsNull()) {
                     this->ClearValue(xaml::Controls::Primitives::RangeBase::MinimumProperty());
+                }
+                else {
+                    updatedMinValue = true;
+                    m_minValue = propertyValue.AsInt64();
+                }
+            } else if (propertyName == "minimumValueLimit") {
+                if (propertyValue.IsNull()) {
+                    this->ClearValue(xaml::Controls::Primitives::RangeBase::MinimumLimitProperty());
                 }
                 else {
                     updatedMinValue = true;

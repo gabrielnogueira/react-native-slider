@@ -92,11 +92,13 @@ type Props = $ReadOnly<{|
    * Initial minimum value of the slider. Default value is 0.
    */
   minimumValue?: ?number,
+  minimumValueLimit?: ?number,
 
   /**
    * Initial maximum value of the slider. Default value is 1.
    */
   maximumValue?: ?number,
+  maximumValueLimit?: ?number,
 
   /**
    * The color used for the track to the left of the button.
@@ -238,10 +240,7 @@ const SliderComponent = (
   props: Props,
   forwardedRef?: ?Ref<typeof RCTSliderNativeComponent>,
 ) => {
-  const style = StyleSheet.compose(
-    styles.slider,
-    props.style,
-  );
+  const style = StyleSheet.compose(styles.slider, props.style);
 
   const {
     onValueChange,
@@ -306,7 +305,9 @@ SliderWithRef.defaultProps = {
   disabled: false,
   value: 0,
   minimumValue: 0,
+  minimumValueLimit: 0,
   maximumValue: 1,
+  maximumValueLimit: 1,
   step: 0,
   inverted: false,
   tapToSeek: false,
