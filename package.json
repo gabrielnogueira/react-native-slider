@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "5.0.0_BETA",
+  "version": "5.0.0",
   "workspaces": ["src", "example"],
   "scripts": {
     "validate:eslint": "eslint src example",
